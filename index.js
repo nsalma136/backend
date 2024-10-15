@@ -8,7 +8,7 @@ app.use(express.json());
 
 // MySQL connection setup
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: 'localhost', // Ensure this is correct
     user: 'root', // Replace with your MySQL username
     password: '', // Replace with your MySQL password
     database: 'userDB' // Ensure this matches your MySQL database
@@ -16,7 +16,7 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
     if (err) {
-        console.error('Error connecting to MySQL:', err);
+        console.error('Error connecting to MySQL:', err.message);
         return;
     }
     console.log('MySQL Connected...');
@@ -33,7 +33,7 @@ app.get('/test', (req, res) => {
     
     db.query(query, (err, result) => {
         if (err) {
-            console.error('Error inserting data:', err);
+            console.error('Error inserting data:', err.message);
             return res.status(500).send('Error');
         }
         res.send('Test User added!');
@@ -49,15 +49,14 @@ app.post('/adduser', (req, res) => {
     
     db.query(query, [name, age, sex, city, state], (err, result) => {
         if (err) {
-            console.error('Error inserting data:', err);
+            console.error('Error inserting data:', err.message);
             return res.status(500).send('Error inserting data');
         }
         res.send('User added!');
     });
 });
 
-// Start the server on port 5000
-const PORT = 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+// Listen on the configured port
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });
