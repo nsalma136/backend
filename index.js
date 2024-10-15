@@ -56,6 +56,9 @@ app.post('/adduser', (req, res) => {
     });
 });
 
+
+const port = process.env.PORT || 5000; // Use an environment variable or default to 5000
+
 // Listen on the configured port
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
