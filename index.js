@@ -3,7 +3,19 @@ const mysql = require('mysql');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+
+// CORS Configuration
+const corsOptions = {
+    origin: 'http://localhost:3000', // Replace with your frontend URL
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Allow credentials (like cookies)
+    optionsSuccessStatus: 204 // Some legacy browsers choke on 204
+};
+
+// Enable CORS with options
+app.use(cors(corsOptions));
+
+// Middleware to parse JSON requests
 app.use(express.json());
 
 // MySQL connection setup
