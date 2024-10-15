@@ -22,6 +22,11 @@ db.connect((err) => {
     console.log('MySQL Connected...');
 });
 
+// Health check route
+app.get('/', (req, res) => {
+    res.send('API is up and running!');
+});
+
 // Test route to insert dummy data into the database
 app.get('/test', (req, res) => {
     const query = "INSERT INTO users (name, age, sex, city, state) VALUES ('John Doe', 30, 'Male', 'New York', 'NY')";
