@@ -25,10 +25,10 @@ app.use(express.json());
 
 // MySQL connection setup
 const db = mysql.createConnection({
-    host: 'localhost', // Ensure this is correct
+    host: 'db-container-6a73b82a-3720-495f-b6e5-69beabf41083', // Ensure this is correct
     user: 'root', // Replace with your MySQL username
-    password: '', // Replace with your MySQL password
-    database: 'userDB' // Ensure this matches your MySQL database
+    password: 'password', // Replace with your MySQL password
+    database: 'salmadb' // Ensure this matches your MySQL database
 });
 
 db.connect((err) => {
