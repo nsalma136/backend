@@ -4,12 +4,17 @@ const cors = require('cors');
 
 const app = express();
 
-// CORS Configuration
+const allowedOrigins = ['http://localhost:3000', 'https://front.stacknow.dev'];
+
 const corsOptions = {
-    origin: 'http://localhost:3000', // Replace with your frontend URL
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Allow credentials (like cookies)
-    optionsSuccessStatus: 204 // Some legacy browsers choke on 204
+    origin: (origin, callback) => {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    // other options...
 };
 
 // Enable CORS with options
